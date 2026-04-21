@@ -1,0 +1,147 @@
+version: 2
+
+models:
+  - name: stg_openclassrooms
+    description: Modèle staging contenant les données fiabilisées pour chaque user_id
+    columns:
+      - name: USER_ID 
+        description: Identifiant technique unique par étudiant, possible doublons en lien avec DATE_DEBUT_FORMATION 
+        data_tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              arguments: 
+                column_type: varchar
+      - name: CATEGORIE_PARCOURS
+        description: Catégorie du parcours suivi par étudiant, seulement cursus DATA
+        data_tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              arguments: 
+                column_type: varchar
+          - accepted_values:
+              arguments:
+                values: ['Data']
+      - name: GENRE
+        description: Genre déclaré par étudiant (facultatif)
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['M','F','unknown']
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              arguments: 
+                column_type: varchar
+      - name: REGION
+        description: Région de résidence des étudiants
+        data_tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              arguments:
+                column_type: varchar
+      - name: FOURCHETTE_AGE
+        description: Classe d’âge de l’étudiant au moment du début du parcours
+        data_tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              arguments: 
+                column_type: varchar
+      - name: ANNEE_DEBUT_FORMATION
+        description: Année de début du parcours
+        data_tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              arguments: 
+                column_type: Number
+          - dbt_expectations.expect_column_value_lengths_to_equal:
+              arguments: 
+                value: 4
+  - name: stg_insee_emplois_regions_2024
+    description: Modèle staging contenant les données de INSEE sur les emplois en fonction des regions sur l'année 2024.
+    columns:
+      - name: REGION 
+        description: region de France pour les emplois
+        data_tests:
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              arguments: 
+                column_type: varchar
+      - name: EMPLOIS_TOTAL
+        description: nombre d'emplois par regions. En milliers de personnes
+        data_tests:
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              arguments: 
+                column_type: number
+  - name: stg_insee_evol_emplois_age_genre
+    description: Modèle staging contenant les données de INSEE sur les emplois par genre et age de 1975 à 2025
+    columns:
+      - name: ANNEE
+        description: année des emplois
+        data_tests:
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              arguments: 
+                column_type: number
+          - dbt_expectations.expect_column_value_lengths_to_equal:
+              arguments: 
+                value: 4
+      - name: F_15_24 
+        description: Nombre d'emplois pour les femmes de 15 à 24 ans par an 
+        data_tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              arguments: 
+                column_type: number
+      - name: H_15_24 
+        description: Nombre d'emplois pour les hommes de 15 à 24 ans par an 
+        data_tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              arguments: 
+                column_type: number
+      - name: E_15_24 
+        description: Nombre d'emplois pour tous les genres de 15 à 24 ans par an 
+        data_tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              arguments: 
+                column_type: number
+      - name: F_25_49 
+        description: Nombre d'emplois pour les femmes de 25 à 49 ans par an 
+        data_tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              arguments: 
+                column_type: number
+      - name: H_25_49 
+        description: Nombre d'emplois pour les hommes de 25 à 49 ans par an 
+        data_tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              arguments: 
+                column_type: number
+      - name: E_25_49 
+        description: Nombre d'emplois pour tous les genres de 25 à 49 ans par an 
+        data_tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              arguments: 
+                column_type: number
+      - name: F_50_64 
+        description: Nombre d'emplois pour les femmes de 50 à 64 ans par an 
+        data_tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              arguments: 
+                column_type: number
+      - name: H_50_64 
+        description: Nombre d'emplois pour les hommes de 50 à 64 ans par an 
+        data_tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              arguments: 
+                column_type: number
+      - name: E_50_64 
+        description: Nombre d'emplois pour tous les genres de 50 à 64 ans par an 
+        data_tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              arguments: 
+                column_type: number
+              
