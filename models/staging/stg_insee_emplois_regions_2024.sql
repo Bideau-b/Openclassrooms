@@ -1,0 +1,4 @@
+select 
+    REGION,
+    TRY_TO_NUMBER(REGEXP_REPLACE(TRIM("EMPLOIS_TOTAL"),'[^0-9]+','')) AS EMPLOIS_TOTAL,
+from {{ source('snowflake','INSEE_EMPLOIS_REGIONS_2024')}}
