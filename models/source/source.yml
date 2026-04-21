@@ -6,6 +6,7 @@ sources:
     tables: 
       - name: OPENCLASSROOMS_DATA
         description: Table de données Openclassrooms contenant la liste des utilisateurs en formation data avec le genre (facultatif), la tranche d'age et région pour chaque année de 2022 à 2025 
+          
       - name: INSEE_EMPLOIS_AGE_GENRE
         description: Table de données Openclassrooms contenant le nombre de personnes en emplois par genre et par tranche d'age de 1975 à 2025
       - name: INSEE_EMPLOIS_REGIONS_2024
