@@ -1,0 +1,10 @@
+version: 2
+
+sources: 
+  - name: snowflake
+    schema: DBT_DEV
+    tables: 
+      - name: OPENCLASSROOMS_DATA
+      - name: INSEE_EMPLOIS_AGE_GENRE
+      - name: INSEE_EMPLOIS_REGIONS_2024
+      
