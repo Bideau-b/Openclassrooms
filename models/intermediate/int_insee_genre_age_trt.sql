@@ -1,3 +1,4 @@
+--renommage des variables puis union des données pour une seule variable par catégorie de données 
 select 
     ANNEE,
     'F' AS GENRE,
