@@ -1,3 +1,5 @@
+--renommage des variables et modification des données de genre non identifiées
+
 select 
     USER_ID,
     AGE_GROUP as FOURCHETTE_AGE,
