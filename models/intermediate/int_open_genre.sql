@@ -1,6 +1,5 @@
 with genre_temp as (
 
-    -- Calcul du pourcentage des étudiants par an en retirant les doublons
     select
         count(distinct USER_ID) as NOMBRE_USER, --on retire les doublons
         round(count(distinct USER_ID)* 100 / sum(count(distinct USER_ID)) over (Partition by ANNEE_DEBUT_FORMATION),2) as USER_POURCENTAGE, 
@@ -12,7 +11,6 @@ with genre_temp as (
 
 )
 
-    -- Calcul du pourcentage des étudiants par genre et par an
 select
     sum(USER_POURCENTAGE) as POURCENTAGE_GENRE_OPENCLASSROOM,
     GENRE,
