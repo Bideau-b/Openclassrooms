@@ -1,3 +1,5 @@
+--chargement table openclassroom pour les données "régions"
+
 with regions_open as (
 
     select
@@ -7,6 +9,8 @@ with regions_open as (
     from {{ ref('int_open_regions') }}
 
 ),
+
+--chargement table insee pour les données "régions"
 
 regions_insee as (
     
@@ -18,6 +22,8 @@ regions_insee as (
 
 )
 
+-- jointure des données openclassrooms avec ceux de l'INSEE sur les régions
+
 select  
     POURCENTAGE_REGION_OPENCLASSROOM,
     POURCENTAGE_REGION_INSEE,
@@ -26,5 +32,5 @@ select
     ANNEE_DEBUT_FORMATION,
     ANNEE
 from regions_open ro
-left join regions_insee ri on ro.REGION = ri.REGION_FINALE
-where ANNEE_DEBUT_FORMATION=ANNEE
+left join regions_insee ri on ro.REGION = ri.REGION_FINALE --jointure régions
+where ANNEE_DEBUT_FORMATION=ANNEE --liaison avec l'année 2024
