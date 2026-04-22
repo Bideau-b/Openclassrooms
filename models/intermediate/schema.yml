@@ -81,6 +81,9 @@ models:
           - dbt_expectations.expect_column_values_to_be_of_type:
               arguments: 
                 column_type: varchar
+          - accepted_values:
+              arguments:
+                values: ['DROM','Bourgogne-Franche-Comté','Normandie','Centre-Val de Loire','Pays de la Loire','Bretagne',"Provence-Alpes-Côte d''Azur",'Nouvelle-Aquitaine','Corse','Occitanie','Grand Est','Hauts-de-France','Auvergne-Rhône-Alpes','Île-de-France']  
   - name: int_quantite_parcours
     description: Modèle intermédiaire regroupant le pourcentage d'étudiants openclassroom par région et par an
     columns:
@@ -207,6 +210,9 @@ models:
           - dbt_expectations.expect_column_values_to_be_of_type:
               arguments: 
                 column_type: varchar
+          - accepted_values:
+              arguments:
+                values: ['DROM','Bourgogne-Franche-Comté','Normandie','Centre-Val de Loire','Pays de la Loire','Bretagne',"Provence-Alpes-Côte d''Azur",'Nouvelle-Aquitaine','Corse','Occitanie','Grand Est','Hauts-de-France','Auvergne-Rhône-Alpes','Île-de-France']  
       - name: ANNEE
         description: annees des emplois les régions. Il n'y a que 2024
         data_tests:
