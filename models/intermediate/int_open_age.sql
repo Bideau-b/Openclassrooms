@@ -1,7 +1,7 @@
 with age_temp as (
     
     select
-        count(distinct USER_ID) as NOMBRE_USER, 
+        count(distinct USER_ID) as NOMBRE_USER, --on retire les doublons
         round(count(distinct USER_ID) * 100.0 / sum(count(distinct USER_ID)) over (Partition by ANNEE_DEBUT_FORMATION),2) as USER_POURCENTAGE,
         case 
             when FOURCHETTE_AGE in ('20-24 ans')
