@@ -1,3 +1,5 @@
+--calcul du pourcentage d'étudiants par tranche d'age et par an en modifiant les fourchettes d'ages (correspondance avec données INSEE)
+
 with age_temp as (
     
     select
@@ -16,7 +18,8 @@ with age_temp as (
     GROUP BY FOURCHETTE_AGE,ANNEE_DEBUT_FORMATION
 
 )
-  
+
+-- calcul total du pourcentage suite au regroupement des tranches d'ages par année
 select
         sum(USER_POURCENTAGE) as POURCENTAGE_AGE_OPENCLASSROOM,
         FOURCHETTE_AGE_REGROUPEE,
